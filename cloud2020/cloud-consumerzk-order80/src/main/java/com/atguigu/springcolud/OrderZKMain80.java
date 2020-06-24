@@ -11,7 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @date : 2020-06-19 11:24
  **/
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableDiscoveryClient //该注释用于想使用向使用Consul或者Zookeeper作为注册中心时注册服务
 public class OrderZKMain80 {
     public static void main(String[] args) {
         SpringApplication.run(OrderZKMain80.class,args);
