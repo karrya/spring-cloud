@@ -31,6 +31,11 @@ public class PaymentController {
     @Resource
     private DiscoveryClient discoveryClient;
 
+    /**
+     * 插入
+     * @param payment
+     * @return
+     */
     @PostMapping(value = "/payment/create")
     public CommonResult create(@RequestBody Payment payment) {
         int result = paymentService.create(payment);
@@ -44,6 +49,11 @@ public class PaymentController {
         return new CommonResult(444, "失败！！！");
     }
 
+    /**
+     * 按照ID查询
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/payment/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id")Long id) {
         Payment payment = paymentService.getPaymentById(id);
@@ -72,11 +82,19 @@ public class PaymentController {
         return this.discoveryClient;
     }
 
+    /**
+     * 负载均衡与8002测试
+     * @return
+     */
     @GetMapping(value = "/payment/lb")
     public String getPaymentLB(){
         return serverPort;
     }
 
+    /**
+     * OpenFeign
+     * @return
+     */
     @GetMapping(value = "/payment/feign/timeout")
     public String paymentFeignTimeOut(){
         try {
